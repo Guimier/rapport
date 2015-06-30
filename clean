@@ -1,0 +1,74 @@
+#!/bin/bash
+
+# Soyons le plus indépendant possible du répertoire
+if which readlink && which dirname > /dev/null 2>&1
+then
+	declare -r mainDir="$( dirname "$( readlink "$1" )" )"
+else
+	declare -r mainDir="$( pwd )"
+fi
+
+cd "$mainDir"
+
+declare -a options=( "$@" )
+declare -i derniereOption=$( expr $# - 1 )
+
+if ! which seq >/dev/null 2>&1
+then
+	seq() {
+		local -i i=$1
+		while [ $i -le $2 ]
+		do
+			printf '%d ' $i
+			let i++
+		done
+	}
+fi
+
+opt() {
+	for i in $( seq 0 $derniereOption )
+	do
+		if [ "_${options[$i]}" = "_$1" ]
+		then
+			return 0
+		fi
+	done
+	
+	return 1
+}
+
+doIt() {
+	if ! opt --quiet
+	then
+		echo "$@"
+	fi
+	"$@"
+}
+
+# Par défaut, * sans correspondance est conservé
+# Cette option le remplace par une absence d'arguments
+shopt -s nullglob
+
+declare -a fichiers=( *.aux *.log *.lof *.ann *.toc *.bbl *.blg )
+
+# Pas de gestion du document final par défaut
+if opt --all && [ -f rapport.pdf ]
+then
+	fichiers+=( rapport.pdf )
+fi
+
+if [ "${#fichiers[@]}" -eq 0 ]
+then
+	exit 0
+fi
+
+if opt --tmp
+then
+	# Assurons-nous que le dossier existe
+	mkdir tmp > /dev/null 2>&1
+	# Déplacement
+	doIt mv "${fichiers[@]}" tmp
+else
+	doIt rm "${fichiers[@]}"
+fi
+

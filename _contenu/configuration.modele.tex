@@ -1,0 +1,56 @@
+% Documentation des macro à définir pour modifier le rapport.
+% Les fichiers devant être créés lorsque certaines options sont activées sont situés dans le répertoire `contenu`
+% (celui dans lequel se trouve le présent fichier).s
+% Les macros marquées comme facultatives ne doivent pas (MUST NOT au sens de la RFC 2119) être définies si elles
+% ne sont pas utilisées.
+
+% Décommenter la ligne suivante pour afficher la partie Annexes
+% Nécessite la création d'un fichier `annexes.tex`
+% \def\rpAnnexes{}
+
+% Si cette macro est définie, le lexique/glossaire est affiché
+% Nécessite la création d'un fichier `lexique.tex` constitué d'une succession de `\item[terme]{définition}`
+% \def\rpLexique{}
+
+% Si "Glossaire" ne convient pas :
+% \def\rpTitreLexique{Lexique}
+
+% Décommenter la partie suivante pour afficher la webographie
+% \def\rpWebographie{}
+
+% Filière du (des) rédacteurs
+% Prédéfinies : \rpFun, \rpFdeux, \rpFtrois, \rpFquatre et \rpFcinq
+\def\rpFiliere{ -- obligatoire -- }
+
+% Année du rédacteur : 1, 2, ou 3
+\def\rpAnnee{ -- obligatoire -- }
+
+% Type de rapport (Stage, Projet)
+\def\rpType{ -- obligatoire -- }
+
+% Titre du rapport
+\def\rpTitre{ -- obligatoire -- }
+
+% Date de la soutenance
+\def\rpDateSoutenance{ -- obligatoire -- }
+
+% Durée du projet ou du stage (exemple : 5 mois)
+\def\rpDuree{ -- obligatoire -- }
+
+% Nom du (premier) rédacteur
+\def\rpNom{ -- obligatoire -- }
+
+% Nom du second rédacteur
+\def\rpSecondNom{ -- facultatif -- }
+
+% Nom du tuteur Isima
+\def\rpTuteurIsima{ -- obligatoire -- }
+
+% Si le tuteur est une tutrice
+% \def\rpTypeTuteurIsima{Tutrice}
+
+% Nom du tuteur entreprise
+\def\rpTuteurEntreprise{ -- obligatoire -- }
+
+% Si le tuteur est une tutrice
+% \def\rpTypeTuteurEntreprise{Tutrice}

@@ -1,0 +1,5 @@
+#!/bin/bash
+# Préparer le terrain pour écrire le rapport
+# ce script pourrait à l'avenir intégrer une première configuration automatique.
+
+cp -r _contenu contenu

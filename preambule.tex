@@ -1,0 +1,99 @@
+\documentclass[a4paper, oneside, 12pt]{article}
+
+%%%%%%%%%% Paquets %%%%%%%%%%
+
+% Paquets pour le Français
+\usepackage[utf8]{inputenc} % Gestion encodages
+\usepackage[T1]{fontenc} % ???
+\usepackage[francais]{babel} % Typographie française
+
+% Divers
+\usepackage{bibtopic}
+\usepackage{cleveref}
+\usepackage{url}
+\usepackage{here}
+\usepackage{enumitem}
+
+% Images
+\usepackage{graphicx}
+
+% Mise en page
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm, footskip=4.5cm]{geometry}
+\parskip=8pt
+
+% Tabulations verbatim
+% http://www.grappa.univ-lille3.fr/FAQ-LaTeX/6.16.html
+\makeatletter
+{\catcode`\^^I=\active
+\gdef\verbatim{\catcode`\^^I=\active\def^^I{\hspace*{4em}}%
+\@verbatim \frenchspacing\@vobeyspaces \@xverbatim}}
+\makeatother
+
+%%%%%%%%%% Commandes supplémentaires %%%%%%%%%%%
+
+% Marquage du travail restant
+% [#1] Texte à afficher
+\newcommand{\todo}[1][Il y a là encore des choses à écrire !]{\colorbox{yellow}{#1}}
+
+%%% Gestion du sommaire
+% Section non numérotée
+% {#1} Nom de la section
+\newcommand{\sectionSpeciale}[1]{\section*{#1}\addcontentsline{toc}{section}{#1}}
+% Section non numérotée dont le titre n’est pas affiché.
+% {#1} Nom de la section
+\newcommand{\sectionCachee}[1]{\addcontentsline{toc}{section}{#1}}
+
+%%% Gestion des annexes
+\makeatletter
+	
+	\newcounter{annctr}
+	
+	% Définir une annexe
+	% {#1} Nom de l’annexe
+	\newcommand{\annexe}[1]{\stepcounter{annctr}\addcontentsline{ann}{section}{\protect\numberline {\Alph{annctr}}#1}\section*{\numberline {\Alph{annctr}}#1}}
+	% Lister les annexes
+	% Note : ce serait quand même bien de le faire fonctionner sans avoir besoin du makefile.
+	\newcommand\listeannexes{\sectionSpeciale{Annexes}\input{annexes.tex}}
+	
+	% Déclaration et ouverture du fichier de stockage de la liste des annexes
+	\newwrite\tf@ann
+	\immediate\openout\tf@ann\jobname.ann\relax
+      
+\makeatother
+
+% \newcommand{\bibliographie}[2]{\sectionCachee{#1}\renewcommand{\refname}{#1}\bibliographystyle{plain}\bibliography{#2}}
+\newcommand{\bibliographie}[2]{%
+\begin{btSect}[plain]{#2}%
+	\subsection*{#1}%
+	\btPrintAll%/\btPrintCited
+\end{btSect}%
+}
+\newcommand{\bibliographieSansTitre}[1]{%
+\begin{btSect}[plain]{#1}%
+	\btPrintAll%/\btPrintCited
+\end{btSect}%
+}
+
+%%%%%%%%%% Abstract %%%%%%%%%%
+
+\newcommand\keywords[2]{%
+	\begin{itshape}
+		\noindent\textbf{#1} #2
+	\end{itshape}
+}
+
+%%%%%%%%%% Abstraction de la mise en forme %%%%%%%%%%
+
+\newcommand\nom[1]{\textsc{#1}}
+\newcommand\classe[1]{\textit{#1}}
+
+%%%%%%%%%% Outils %%%%%%%%%%
+
+\newcommand\rpFun{{\em{Informatique des Systèmes Embarqués}}}
+\newcommand\rpFdeux{{\em{Génie Logiciel et Systèmes Informatiques}}}
+\newcommand\rpFtrois{{\em{Information System Management and Decision Support Systems}}}
+\newcommand\rpFquatre{{\em{Calcul et Modélisation Scientifiques}}}
+\newcommand\rpFcinq{{\em{Réseaux et télécommunications}}}
+
+\input{configuration.defauts.tex}
+\input{contenu/configuration}

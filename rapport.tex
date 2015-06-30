@@ -1,0 +1,83 @@
+\input{preambule}
+
+\begin{document}
+
+%%% Page de garde %%%
+
+\input{page-garde}
+
+\newpage
+	
+%%% Avant-propos %%%
+\pagenumbering{roman}
+
+\sectionSpeciale{Remerciements}
+\input{contenu/remerciements}
+\newpage
+
+\sectionCachee{\listfigurename}
+\listoffigures
+\newpage
+
+% Pas de titre extérieur au fichier, car il en contient deux.
+\input{contenu/resume}
+\newpage
+
+\renewcommand{\contentsname}{Table des matières}
+\sectionCachee{\contentsname}
+\tableofcontents
+\newpage
+
+% Sauvegarde du numéro de la page courante
+\newcounter{metapage}
+\setcounter{metapage}{\value{page}}
+% Remise à zéro des numéros de page & changement de chiffres
+\pagenumbering{arabic}
+
+%%% Contenu %%%
+
+\sectionSpeciale{Introduction}
+\input{contenu/introduction}
+\newpage
+
+\input{contenu/contenu}
+\newpage
+
+\sectionSpeciale{Conclusion}
+\input{contenu/conclusion}
+\newpage
+
+%%% Après-propos %%%
+
+% Changement des chiffres utilisés pour les numéros de pages
+\pagenumbering{roman}
+% Rétablissement du numéro de page méta
+\setcounter{page}{\value{metapage}}
+
+\ifdefined\rpWebographie
+	\sectionSpeciale{Références}
+	
+	\bibliographie{Références bibliographiques}{bibliographie}
+	\bibliographie{Références webographiques}{webographie}
+\else
+	\sectionSpeciale{Références bibliographiques}
+	\bibliographieSansTitre{bibliographie}
+\fi
+
+\ifdefined\rpLexique
+	\newpage
+	\sectionSpeciale{\rpTitreLexique}
+	
+	\begin{description}[style=nextline]
+		\input{contenu/lexique}
+	\end{description}
+\fi
+
+% Annexes
+\ifdefined\rpAnnexes
+	\newpage
+	\listeannexes
+	\input{contenu/annexes}
+\fi
+
+\end{document}

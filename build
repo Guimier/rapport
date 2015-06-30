@@ -1,0 +1,56 @@
+#!/bin/bash
+# Algorithme de compilation du document.
+
+# Soyons le plus indépendant possible du répertoire
+if which readlink && which dirname > /dev/null 2>&1
+then
+	declare -r mainDir="$( dirname "$( readlink "$1" )" )"
+else
+	declare -r mainDir="$( pwd )"
+fi
+
+if ! which clear > /dev/null 2>&1
+then
+	if which tput > /dev/null 2>&1
+	then
+		clear() { tput clear; }
+	else
+		clear() { :; }
+	fi
+fi
+
+cd "$mainDir"
+touch rapport.ann # N'est plus défini après `clean`, ce qui ferait planter la compilation
+
+declare -i etape=0
+
+compiler() {
+	let etape++
+	clear
+	echo "== Compilation #$etape =="
+	cp rapport.ann annexes.tex
+	pdflatex rapport 
+}
+
+# Lecture de la bibliographie
+compiler
+
+# Pré-intégration de la bibliographie
+clear
+declare -i sousEtape=1
+while [ -f rapport$sousEtape.aux ]
+do
+	echo "== Compilation #$etape.$sousEtape =="
+	bibtex rapport$sousEtape
+	let sousEtape++
+done
+
+# Intégration de la bibliographie
+# Géneration du sommaire
+compiler
+
+# Intégration du sommaire
+compiler
+
+rm annexes.tex
+

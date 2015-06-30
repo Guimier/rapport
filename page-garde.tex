@@ -1,0 +1,48 @@
+% Pas de numéro sur cette page
+\thispagestyle{empty}
+\newgeometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+
+% Note : logo disponibles sur http://fc.isima.fr/~brunot/files/isima/logos/
+% J’avais trouvé une version vectorielle, ce serait mieux, mais je ne la trouve plus…
+\includegraphics[width=6cm]{isima.png}
+
+\vspace{1cm}
+
+\begin{minipage}{4cm}
+\begin{flushleft}
+	Institut Supérieur d’Informatique, de Modélisation et de leurs Applications
+	
+	\vspace{0.5cm}
+	
+	\small{ 1 rue de la Chebarde \\ TSA 60125 \\ CS 60026 \\ 63178 Aubière CEDEX }
+\end{flushleft}
+\end{minipage}
+
+\vspace{3cm}
+
+\begin{center}
+	Rapport d’ingénieur \\
+	{\rpType} de \rpAnnee{\ieme} année \\
+	Filière \rpFiliere \\
+	\Large{\textbf{\rpTitre}}
+\end{center}
+
+\vspace{4cm}
+
+\begin{tabular}{ll}
+\textit{Présenté par :} & \textbf{\rpNom} \\
+\ifdefined\rpSecondNom
+	& \textbf{\rpSecondNom} \\
+\fi
+ & \\
+\textit{{\rpTypeTuteurEntreprise} entreprise :} & \textbf{\rpTuteurEntreprise} \\
+\textit{{\rpTypeTuteurIsima} ISIMA :} & \textbf{\rpTuteurIsima} \\
+\end{tabular}
+
+\begin{flushright}
+\textit{Soutenance le} \textbf{\rpDateSoutenance} \\
+\textit{{\rpType} de} \textbf{\rpDuree}
+\end{flushright}
+
+\restoregeometry
+
