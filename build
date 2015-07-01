@@ -4,7 +4,7 @@
 # Soyons le plus indépendant possible du répertoire
 if which readlink && which dirname > /dev/null 2>&1
 then
-	declare -r mainDir="$( dirname "$( readlink "$1" )" )"
+	declare -r mainDir="$( dirname "$( readlink "$0" )" )"
 else
 	declare -r mainDir="$( pwd )"
 fi
