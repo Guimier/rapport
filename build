@@ -29,7 +29,7 @@ compiler() {
 	clear
 	echo "== Compilation #$etape =="
 	cp rapport.ann annexes.tex
-	pdflatex rapport 
+	pdflatex rapport || exit 1
 }
 
 # Lecture de la bibliographie
@@ -41,7 +41,7 @@ declare -i sousEtape=1
 while [ -f rapport$sousEtape.aux ]
 do
 	echo "== Compilation #$etape.$sousEtape =="
-	bibtex rapport$sousEtape
+	bibtex rapport$sousEtape || exit 1
 	let sousEtape++
 done
 
