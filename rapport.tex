@@ -4,7 +4,9 @@
 
 %%% Page de garde %%%
 
-\input{._tex/page-garde}
+\begin{rmskip}
+	\input{._tex/page-garde}
+\end{rmskip}
 
 \newpage
 	
@@ -23,9 +25,11 @@
 \input{contenu/resume}
 \newpage
 
-\renewcommand{\contentsname}{Table des matières}
-\sectionCachee{\contentsname}
-\tableofcontents
+\begin{rmskip}
+	\renewcommand{\contentsname}{Table des matières}
+	\sectionCachee{\contentsname}
+	\tableofcontents
+\end{rmskip}
 \newpage
 
 % Sauvegarde du numéro de la page courante
