@@ -21,7 +21,8 @@
 \usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm, footskip=4.5cm]{geometry}
 \parskip=12pt
 
-\newenvironment{rmskip}{\bgroup\parskip=8pt\renewcommand{\baselinestretch}{1.0}}{\egroup}
+\usepackage{setspace}
+\newenvironment{rmskip}{\bgroup\parskip=8pt\setstretch{1.0}}{\egroup}
 
 \usepackage{color} % Utilisé par \todo
 
@@ -102,4 +103,4 @@
 \input{._tex/configuration.defauts.tex}
 \input{contenu/configuration}
 
-\renewcommand{\baselinestretch}{\rpInterligne}
+\setstretch{\rpInterligne}
