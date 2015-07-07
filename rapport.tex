@@ -69,12 +69,14 @@
 \fi
 
 \ifdefined\rpLexique
-	\newpage
-	\sectionSpeciale{\rpTitreLexique}
-	
-	\begin{description}[style=nextline]
-		\input{contenu/lexique}
-	\end{description}
+	\begin{rmskip}
+		\newpage
+		\sectionSpeciale{\rpTitreLexique}
+		
+		\begin{description}[style=nextline]
+			\input{contenu/lexique}
+		\end{description}
+	\end{rmskip}
 \fi
 
 % Annexes
