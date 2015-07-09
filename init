@@ -3,3 +3,4 @@
 # ce script pourrait à l'avenir intégrer une première configuration automatique.
 
 cp -r ._contenu contenu
+mv contenu/configuration.tex .

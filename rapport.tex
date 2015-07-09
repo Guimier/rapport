@@ -14,7 +14,7 @@
 \pagenumbering{roman}
 
 \sectionSpeciale{Remerciements}
-\input{contenu/remerciements}
+\input{\rpDossier/remerciements}
 \newpage
 
 \begin{rmskip}
@@ -25,7 +25,7 @@
 \newpage
 
 % Pas de titre extérieur au fichier, car il en contient deux.
-\input{contenu/resume}
+\input{\rpDossier/resume}
 \newpage
 
 \begin{rmskip}
@@ -45,14 +45,14 @@
 %%% Contenu %%%
 
 \sectionSpeciale{Introduction}
-\input{contenu/introduction}
+\input{\rpDossier/introduction}
 \newpage
 
-\input{contenu/contenu}
+\input{\rpDossier/contenu}
 \newpage
 
 \sectionSpeciale{Conclusion}
-\input{contenu/conclusion}
+\input{\rpDossier/conclusion}
 \newpage
 
 %%% Après-propos %%%
@@ -78,7 +78,7 @@
 		\sectionSpeciale{\rpTitreLexique}
 		
 		\begin{description}[style=nextline]
-			\input{contenu/lexique}
+			\input{\rpDossier/lexique}
 		\end{description}
 	\end{rmskip}
 \fi
@@ -87,7 +87,7 @@
 \ifdefined\rpAnnexes
 	\newpage
 	\listeannexes
-	\input{contenu/annexes}
+	\input{\rpDossier/annexes}
 \fi
 
 \end{document}
