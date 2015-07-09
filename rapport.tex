@@ -17,8 +17,11 @@
 \input{contenu/remerciements}
 \newpage
 
-\sectionCachee{\listfigurename}
-\listoffigures
+\begin{rmskip}
+	\parskip=0pt
+	\sectionCachee{\listfigurename}
+	\listoffigures
+\end{rmskip}
 \newpage
 
 % Pas de titre extérieur au fichier, car il en contient deux.
@@ -26,6 +29,7 @@
 \newpage
 
 \begin{rmskip}
+	\parskip=0pt
 	\renewcommand{\contentsname}{Table des matières}
 	\sectionCachee{\contentsname}
 	\tableofcontents
