@@ -1,0 +1,28 @@
+#!/bin/bash
+# Exécuter `flags` pour la documentation.
+
+declare -r flags='flags.csv'
+if [ "_$1" = '_-s' ]
+then
+	declare -r simple=true
+else
+	declare -r simple=false
+fi
+
+IFS=','
+cat ._flags.csv flags.csv 2>/dev/null | while read line
+do
+	fields=( $line )
+	if $simple
+	then
+		printf '%s : ' "${fields[0]}"
+	else
+		printf '%s (%s) : ' "${fields[3]}" "${fields[0]}"
+	fi
+	if [ -f "${fields[2]}.mrp" ]
+	then
+		echo actif
+	else
+		echo inactif
+	fi
+done

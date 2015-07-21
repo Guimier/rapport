@@ -1,0 +1,122 @@
+#!/bin/bash
+# Exécuter `flag` pour la documentation.
+
+declare -r flags='._flags.csv'
+declare -r custflags='flags.csv'
+# Format de ces fichiers : nom,nom court,fichier,description
+# Le champ fichier n'inclut pas l'extension `.mrp`
+
+declare proc=$$
+declare cmd=touch
+declare -a cmds=()
+declare showonly=false
+
+##### Fonctions #####
+
+# helpShowFlags $header $file
+helpShowFlags() {
+	echo
+	echo "$1"
+	_IFS="$IFS"
+	IFS=','
+	while read line
+	do
+		fields=( $line )
+		if [ -z "${fields[1]}" ]
+		then
+			printf '\t%s\t%s\n' "${fields[0]}" "${fields[3]}"
+		else
+			printf '\t%s (%s)\t%s\n' "${fields[0]}" "${fields[1]}" "${fields[3]}"
+		fi
+	done < "$2"
+	IFS="$_IFS"
+}
+
+# getFileFromName $name $list
+getFileFromName() {
+	_IFS="$IFS"
+	IFS=','
+	while read line
+	do
+		fields=( $line )
+		if [ "_$1" = "_${fields[0]}" ]
+		then
+			printf '%s.mrp' "${fields[2]}"
+			return
+		fi
+		if ! [ -z "${fields[1]}" ] && [ "_$1" = "_${fields[1]}" ]
+		then
+			printf '%s.mrp' "${fields[2]}"
+			return
+		fi
+	done < "$2"
+	IFS="$_IFS"
+	return 1
+}
+
+# filename $name
+filename() {
+	if getFileFromName "$1" "$flags"
+	then
+		return
+	else
+		[ -f "$custflags" ] && getFileFromName "$1" "$custflags" && return
+	fi
+	
+	echo "Drapeau \"$1\" inconnu" >&2
+	kill -KILL "$proc"
+}
+
+escape() {
+	printf \'
+	sed "s#'#'\"'\"'#"
+	printf \'
+}
+
+##### Exécution #####
+
+if [ $# -eq 0 ]
+then
+	echo \
+'Usage :	[un]flag [-s] {+|-|drapeau} ...
+
+COMPORTEMENT
+	-s	Afficher les commandes plutôt que les exécuter
+	+	Activer les drapeaux suivants (comportement initial de `flag`)
+	-	Désactiver les drapeaux suivants (comportement initial de `unflag`)'
+	
+	helpShowFlags 'DRAPEAUX STANDARD' "$flags"
+	
+	if [ -f "$custflags"  ]
+	then
+		helpShowFlags 'DRAPEAUX PERSONNALISÉS' "$custflags"
+	else
+		echo
+		echo "Vous pouvez ajouter des drapeaux personnalisés dans le fichier '$custflags'"
+	fi
+	exit
+fi
+
+while [ $# -gt 0 ]
+do
+	case "$1" in
+		'+') cmd=touch;;
+		'-') cmd=rm;;
+		-s) showonly=true;;
+		*) cmds+=( "$cmd $( filename "$1" | escape )" );;
+	esac
+	shift
+done
+
+if $showonly
+then
+	for cmd in "${cmds[@]}"
+	do
+		echo "$cmd"
+	done
+else
+	for cmd in "${cmds[@]}"
+	do
+		eval "$cmd" 2>/dev/null
+	done
+fi
