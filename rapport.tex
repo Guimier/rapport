@@ -4,14 +4,23 @@
 
 %%% Page de garde %%%
 
+\newgeometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
+\newpage
+% Pas de numéro sur cette page
+\thispagestyle{empty}
 \begin{rmskip}
-	\input{._tex/page-garde}
+	\bgroup\setlength\parindent{0pt}
+		\input{._tex/page-garde}
+	\egroup
 \end{rmskip}
 
+% Marges du reste du document
+\newgeometry{top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm, footskip=1.5cm, includefoot}
 \newpage
+% Et en chiffres romains !
+\pagenumbering{roman}
 	
 %%% Avant-propos %%%
-\pagenumbering{roman}
 
 \sectionSpeciale{Remerciements}
 \input{\rpDossier/remerciements}
