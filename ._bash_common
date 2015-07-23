@@ -1,0 +1,58 @@
+#!/bin/bash
+# Outils communs pour les scripts
+
+[ ${#BASH_SOURCE[@]} -gt 1 ] || { echo 'Ne peut pas être exécuté directement'; exit 255; }
+
+# Format des fichiers suivants : nom,nom court,fichier,description
+# Le champ fichier n'inclut pas l'extension `.mrp`
+declare -r flags='._flags.csv'
+declare -r custflags='flags.csv'
+
+# noout cmd...
+noout() {
+	"$@" &> /dev/null
+}
+# noerrout cmd...
+noerrout() {
+	"$@" 2> /dev/null
+}
+
+cmdexists() {
+	[ -n "$( type -t "$1"  )" ]
+}
+
+# bool cmd...
+# Produit le nom d'un exécutable produisant le même statut booléen.
+bool() {
+	"$@" && echo true || echo false
+}
+
+__needscmd__clear__() {
+	if ! cmdexists clear
+	then
+		if which tput > /dev/null 2>&1
+		then
+			clear() { tput clear; }
+		else
+			clear() { :; }
+		fi
+	fi
+}
+
+__needscmd__seq__() {
+	if ! cmdexists seq
+	then
+		seq() {
+			local -i i=$1
+			while [ $i -le $2 ]
+			do
+				printf '%d ' $i
+				let i++
+			done
+		}
+	fi
+}
+
+needscmd() {
+	"__needscmd__$1__"
+}

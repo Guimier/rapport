@@ -1,10 +1,7 @@
 #!/bin/bash
 # Exécuter `flag` pour la documentation.
 
-declare -r flags='._flags.csv'
-declare -r custflags='flags.csv'
-# Format de ces fichiers : nom,nom court,fichier,description
-# Le champ fichier n'inclut pas l'extension `.mrp`
+source ._bash_common
 
 declare proc=$$
 declare cmd=touch
@@ -117,6 +114,6 @@ then
 else
 	for cmd in "${cmds[@]}"
 	do
-		eval "$cmd" 2>/dev/null
+		noout eval "$cmd"
 	done
 fi

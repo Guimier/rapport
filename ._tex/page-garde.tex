@@ -1,7 +1,3 @@
-% Pas de numéro sur cette page
-\thispagestyle{empty}
-\newgeometry{top=2cm, bottom=2cm, left=2cm, right=2cm}
-
 % Note : logo disponibles sur http://fc.isima.fr/~brunot/files/isima/logos/
 % J’avais trouvé une version vectorielle, ce serait mieux, mais je ne la trouve plus…
 \def\rp@isima{%
@@ -45,26 +41,28 @@
 \begin{center}
 	Rapport d’ingénieur \\
 	{\rpType} de \rpAnnee{\ieme} année \\
-	Filière \rpFiliere \\
-	\Large{\textbf{\rpTitre}}
+	Filière \rpFiliere
+	
+	\vspace{8pt}
+	
+	{\Large\textbf{\rpTitre}}
+	
+	\ifdefined\rpConfidentiel
+		\vspace{8pt}
+		\textbf{\rpConfidentielTexte}
+	\fi
 \end{center}
 
-\vspace{4cm}
+\vfill
 
-\begin{tabular}{ll}
-\textit{Présenté par :} & \textbf{\rpNom} \\
-\ifdefined\rpSecondNom
-	& \textbf{\rpSecondNom} \\
-\fi
- & \\
-\textit{{\rpTypeTuteurEntreprise} entreprise :} & \textbf{\rpTuteurEntreprise} \\
-\textit{{\rpTypeTuteurIsima} ISIMA :} & \textbf{\rpTuteurIsima} \\
-\end{tabular}
-
-\begin{flushright}
-\textit{Soutenance le} \textbf{\rpDateSoutenance} \\
-\textit{{\rpType} de} \textbf{\rpDuree}
-\end{flushright}
-
-\restoregeometry
-
+\begin{tabular*}{\textwidth}{l l @{\extracolsep{\fill}} r}
+	\textit{Présenté par :} & \textbf{\rpNom} & \\
+	\ifdefined\rpSecondNom
+		& \textbf{\rpSecondNom} & \\
+	\fi
+	 & & \\
+	\textit{{\rpTypeTuteurEntreprise} entreprise :} & \textbf{\rpTuteurEntreprise}
+	& \textit{Soutenance le} \textbf{\rpDateSoutenance} \\
+	\textit{{\rpTypeTuteurIsima} ISIMA :} & \textbf{\rpTuteurIsima} &
+	\textit{{\rpType} de} \textbf{\rpDuree}
+\end{tabular*}
