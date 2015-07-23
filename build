@@ -1,25 +1,10 @@
 #!/bin/bash
 # Algorithme de compilation du document.
 
-# Soyons le plus indépendant possible du répertoire
-if which readlink && which dirname > /dev/null 2>&1
-then
-	declare -r mainDir="$( dirname "$( readlink "$0" )" )"
-else
-	declare -r mainDir="$( pwd )"
-fi
+source ._bash_common
 
-if ! which clear > /dev/null 2>&1
-then
-	if which tput > /dev/null 2>&1
-	then
-		clear() { tput clear; }
-	else
-		clear() { :; }
-	fi
-fi
+needscmd clear
 
-cd "$mainDir"
 touch rapport.ann # N'est plus défini après `clean`, ce qui ferait planter la compilation
 
 declare -i etape=0
@@ -36,10 +21,10 @@ compiler() {
 compiler
 
 # Pré-intégration de la bibliographie
-clear
 declare -i sousEtape=1
 while [ -f rapport$sousEtape.aux ]
 do
+	clear
 	echo "== Compilation #$etape.$sousEtape =="
 	bibtex rapport$sousEtape || exit 1
 	let sousEtape++

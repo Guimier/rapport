@@ -1,29 +1,11 @@
 #!/bin/bash
 
-# Soyons le plus indépendant possible du répertoire
-if { which readlink && which dirname; } > /dev/null 2>&1
-then
-	declare -r mainDir="$( dirname "$( readlink "$0" )" )"
-else
-	declare -r mainDir="$( pwd )"
-fi
-
-cd "$mainDir"
+source ._bash_common
 
 declare -a options=( "$@" )
 declare -i derniereOption=$( expr $# - 1 )
 
-if ! which seq >/dev/null 2>&1
-then
-	seq() {
-		local -i i=$1
-		while [ $i -le $2 ]
-		do
-			printf '%d ' $i
-			let i++
-		done
-	}
-fi
+needscmd seq
 
 opt() {
 	for i in $( seq 0 $derniereOption )
@@ -65,10 +47,10 @@ fi
 if opt --tmp
 then
 	# Assurons-nous que le dossier existe
-	mkdir tmp > /dev/null 2>&1
+	noout mkdir tmp
 	# Déplacement
-	doIt mv "${fichiers[@]}" tmp
+	noout doIt mv "${fichiers[@]}" tmp
 else
-	doIt rm "${fichiers[@]}"
+	noout doIt rm "${fichiers[@]}"
 fi
 

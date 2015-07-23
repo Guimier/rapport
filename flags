@@ -1,16 +1,12 @@
 #!/bin/bash
 # Exécuter `flags` pour la documentation.
 
-declare -r flags='flags.csv'
-if [ "_$1" = '_-s' ]
-then
-	declare -r simple=true
-else
-	declare -r simple=false
-fi
+source ._bash_common
+
+declare -r simple=$( bool [ "_$1" = '_-s' ] )
 
 IFS=','
-cat ._flags.csv flags.csv 2>/dev/null | while read line
+noerrout cat ._flags.csv flags.csv | while read line
 do
 	fields=( $line )
 	if $simple
