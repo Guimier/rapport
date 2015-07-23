@@ -25,9 +25,8 @@ configurant un *builder* dans Eclipse pour exécuter
 `configuration.tex`
 ----
 Pour fonctionner, ce modèle nécessite un minimum de configuration, à placer dans
-le fichier `contenu/configuration.tex`. Une liste des instructions de
-configuration est disponible dans le fichier
-`contenu/configuration.modele.tex`.
+le fichier `configuration.tex`. Une liste des instructions de configuration est
+disponible dans le fichier `configuration.modele.tex`.
 
 Ce fichier est inclus en préambule, il peut donc servir à appeler des paquets
 supplémentaires ou à définir des macros.
