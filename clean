@@ -53,4 +53,3 @@ then
 else
 	noout doIt rm "${fichiers[@]}"
 fi
-
