@@ -2,7 +2,109 @@
 # Préparer le terrain pour écrire le rapport
 # ce script pourrait à l'avenir intégrer une première configuration automatique.
 
-cp -r ._contenu contenu
-mv contenu/configuration.tex .
-touch contenu/bibliographie.bib
-touch contenu/webographie.bib
+source ._bash_common
+
+declare -ar always=( conclusion contenu introduction remerciements resume )
+
+qbool() {
+	printf '%s [Y/n] ' "$1" >/dev/tty
+	read r
+	case "$r" in
+		y|Y) true;;
+		n|n) false;;
+		*) qbool "$1"
+	esac
+}
+
+qstring() {
+	printf '%s [%s] ' "$1" "$2" >/dev/tty
+	read r
+	[ -n "$r" ] || r="$2"
+	printf '%s' "$r"
+}
+
+cmd() {
+	echo "	$@"
+	"$@"
+}
+
+declare -r contenu=$( qstring 'Dossier principal ?' contenu )
+
+_cp() {
+	cmd cp ._contenu/"$1" "$2"
+}
+
+cmd mkdir "$contenu"
+for f in "${always[@]}"
+do
+	_cp "$f.tex" "$contenu"
+done
+
+cmd touch "$contenu/bibliographie.bib"
+
+declare -r webo=$( bool qbool 'Insérer une Webographie ?' )
+$webo && cmd touch "$contenu/webographie.bib"
+
+declare -r annexes=$( bool qbool 'Insérer des annexes ?' )
+$annexes && cmd touch "$contenu/annexes.tex"
+
+declare -r lexique=$( bool qbool 'Insérer un glossaire ?' )
+$lexique && _cp "lexique.tex" "$contenu/lexique.tex"
+
+echo 'Génération de la configuration'
+{
+	cat <<LTEX
+% Fichier de configuration. Ce fichier est inclus dans le préambule, vous pouvez
+% y ajouter ce que vous souhaitez. Vous devez définir certaines macros
+% ci-dessous. Le fichier \`configuration.modele.tex\` contient une liste des
+% macro de configuration.
+
+% Filière du (des) rédacteurs
+% Prédéfinies : \rpFun, \rpFdeux, \rpFtrois, \rpFquatre et \rpFcinq
+\def\rpFiliere{ -- obligatoire -- }
+
+% Année du rédacteur : 1, 2, ou 3
+\def\rpAnnee{ -- obligatoire -- }
+
+% Type de rapport (Stage, Projet)
+\def\rpType{ -- obligatoire -- }
+
+% Titre du rapport
+\def\rpTitre{ -- obligatoire -- }
+
+% Date de la soutenance
+\def\rpDateSoutenance{ -- obligatoire -- }
+
+% Durée du projet ou du stage (exemple : 5 mois)
+\def\rpDuree{ -- obligatoire -- }
+
+% Nom du (premier) rédacteur
+\def\rpNom{ -- obligatoire -- }
+
+% Nom du second rédacteur
+\def\rpSecondNom{ -- facultatif -- }
+
+% Pour changer la taille des interlignes
+% \def\rpInterligne{1.0}
+
+% Nom du tuteur Isima
+\def\rpTuteurIsima{ -- obligatoire -- }
+
+% Nom du tuteur entreprise
+\def\rpTuteurEntreprise{ -- obligatoire -- }
+
+LTEX
+	
+	echo '%%% Configuration automatique %%%'
+	echo "\def\rpDossier{$contenu}"
+	$webo && echo '\def\rpWebographie{}'
+	$annexes && echo '\def\rpAnnexes{}'
+	$lexique && echo '\def\rpLexique{}'
+} > configuration.tex
+
+if [ -z "$EDITOR" ]
+then
+	echo "Vous devez modifier le fichier configuration.tex"
+else
+	"$EDITOR" configuration.tex
+fi
