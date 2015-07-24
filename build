@@ -3,7 +3,9 @@
 
 source ._bash_common
 
+declare -ar bibs=( rapport web )
 needscmd clear
+needscmd seq
 
 touch rapport.ann # N'est plus défini après `clean`, ce qui ferait planter la compilation
 
@@ -20,13 +22,12 @@ compiler() {
 # Lecture de la bibliographie
 compiler
 
-# Pré-intégration de la bibliographie
-declare -i sousEtape=1
-while [ -f rapport$sousEtape.aux ]
+# Préparation de la bibliographie
+for sousEtape in $( seq 1 ${#bibs[@]} )
 do
 	clear
 	echo "== Compilation #$etape.$sousEtape =="
-	bibtex rapport$sousEtape || exit 1
+	bibtex "${bibs[$sousEtape-1]}"|| exit 1
 	let sousEtape++
 done
 

@@ -4,3 +4,5 @@
 
 cp -r ._contenu contenu
 mv contenu/configuration.tex .
+touch contenu/bibliographie.bib
+touch contenu/webographie.bib

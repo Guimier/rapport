@@ -6,10 +6,6 @@
 	\documentclass[a4paper, oneside, 12pt]{article}%
 }
 
-%%%%%%%%%% Constantes %%%%%%%%%%
-
-\def\rp@footskip{1.5cm}
-
 %%%%%%%%%% Paquets %%%%%%%%%%
 
 % Paquets pour le Français
@@ -18,7 +14,6 @@
 \usepackage[francais]{babel} % Typographie française
 
 % Divers
-\usepackage{bibtopic}
 \usepackage[noabbrev]{cleveref}
 \usepackage{url}
 \usepackage{here}
@@ -76,18 +71,10 @@
       
 \makeatother
 
-% \newcommand{\bibliographie}[2]{\sectionCachee{#1}\renewcommand{\refname}{#1}\bibliographystyle{plain}\bibliography{#2}}
-\newcommand{\bibliographie}[2]{%
-\begin{btSect}[plain]{#2}%
-	\subsection*{#1}%
-	\btPrintAll%/\btPrintCited
-\end{btSect}%
-}
-\newcommand{\bibliographieSansTitre}[1]{%
-\begin{btSect}[plain]{#1}%
-	\btPrintAll%/\btPrintCited
-\end{btSect}%
-}
+%%%%%%%%%% Bibliographie et webographie %%%%%%%%%%
+
+\usepackage{multibib}
+\newcites{web}{Références webographiques}
 
 %%%%%%%%%% Abstract %%%%%%%%%%
 

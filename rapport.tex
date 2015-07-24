@@ -71,14 +71,17 @@
 % Rétablissement du numéro de page méta
 \setcounter{page}{\value{metapage}}
 
+\bibliographystyle{ieeetr}
+\renewcommand{\refname}{Références bibliographiques}
 \ifdefined\rpWebographie
 	\sectionSpeciale{Références}
 	
-	\bibliographie{Références bibliographiques}{bibliographie}
-	\bibliographie{Références webographiques}{webographie}
+	\bibliography{\rpDossier/bibliographie}
+	\bibliographystyleweb{ieeetr}
+	\bibliographyweb{\rpDossier/webographie}
 \else
-	\sectionSpeciale{Références bibliographiques}
-	\bibliographieSansTitre{bibliographie}
+	\sectionCachee{\refname}
+	\bibliography{\rpDossier/bibliographie}
 \fi
 
 \ifdefined\rpLexique
