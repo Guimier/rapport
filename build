@@ -11,16 +11,24 @@ touch rapport.ann # N'est plus défini après `clean`, ce qui ferait planter la 
 
 declare -i etape=0
 
-compiler() {
+compilation() {
 	let etape++
 	clear
 	echo "== Compilation #$etape =="
 	cp rapport.ann annexes.tex
-	pdflatex rapport || exit 1
+	"$@" || exit 1
+}
+
+compiler() {
+	compilation pdflatex rapport
+}
+
+preCompiler() {
+	compilation pdflatex '\def\rpModeBrouillon{}\input{rapport}'
 }
 
 # Lecture de la bibliographie
-compiler
+preCompiler
 
 # Préparation de la bibliographie
 for sousEtape in $( seq 1 ${#bibs[@]} )
@@ -33,7 +41,7 @@ done
 
 # Intégration de la bibliographie
 # Géneration du sommaire
-compiler
+preCompiler
 
 # Intégration du sommaire
 compiler

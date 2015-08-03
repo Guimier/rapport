@@ -1,10 +1,12 @@
 \def\ifflag#1{\IfFileExists{./#1.mrp}}
 
-\ifflag{brouillon}{%
-	\documentclass[a4paper, oneside, 12pt, draft]{article}%
-}{%
-	\documentclass[a4paper, oneside, 12pt]{article}%
-}
+\ifflag{brouillon}{\def\rpModeBrouillon{}}{}
+
+\ifdefined\rpModeBrouillon
+	\documentclass[a4paper, oneside, 12pt, draft]{article}
+\else
+	\documentclass[a4paper, oneside, 12pt]{article}
+\fi
 
 %%%%%%%%%% Paquets %%%%%%%%%%
 
