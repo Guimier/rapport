@@ -26,12 +26,16 @@
 \input{\rpDossier/remerciements}
 \newpage
 
-\begin{rmskip}
-	\parskip=0pt
-	\sectionCachee{\listfigurename}
-	\listoffigures
-\end{rmskip}
-\newpage
+\newcommand\rpListeDesFigures{%
+	\begin{rmskip}%
+		\parskip=0pt%
+		\sectionCachee{\listfigurename}%
+		\listoffigures%
+	\end{rmskip}%
+	\newpage%
+}
+
+\ifdefined\rpFiguresApresToc\else\rpListeDesFigures\fi
 
 % Pas de titre extérieur au fichier, car il en contient deux.
 \input{\rpDossier/resume}
@@ -44,6 +48,8 @@
 	\tableofcontents
 \end{rmskip}
 \newpage
+
+\ifdefined\rpFiguresApresToc\rpListeDesFigures\fi
 
 % Sauvegarde du numéro de la page courante
 \newcounter{metapage}
