@@ -17,6 +17,8 @@ Une fois la configuration initiale effectuée (voir `configuration.tex`),
 le rapport peut être construit avec le script `build`. Un script `clean`
 permet de supprimer les fichiers créés par la compilation.
 
+**Note en cas d'erreur de compilation :** le script de compilation ne fonctionne actuellement pas si ni la bibliographie ni la webographie ne sont *utilis�es* (appel�es dans le texte avec \cite et \webcite).
+
 `configuration.tex`
 ----
 Pour fonctionner, ce modèle nécessite un minimum de configuration, à placer dans
