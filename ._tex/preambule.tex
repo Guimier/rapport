@@ -101,6 +101,12 @@
 
 %%%%%%%%%% Configuration %%%%%%%%%%
 
+\makeatletter
+\newcommand\rpBool[1]{%
+	\expandafter\newcommand\csname\expandafter\@gobble\string#1\endcsname{}%
+}
+\makeatother
+
 \input{._tex/configuration.defauts.tex}
 \input{configuration}
 
