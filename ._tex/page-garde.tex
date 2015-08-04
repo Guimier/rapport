@@ -1,40 +1,24 @@
 % Note : logo disponibles sur http://fc.isima.fr/~brunot/files/isima/logos/
 % J’avais trouvé une version vectorielle, ce serait mieux, mais je ne la trouve plus…
-\def\rp@isima{%
-	\begin{minipage}[t]{6cm}
-		\vspace{0pt}\includegraphics[width=\rpLargeurLogoIsima]{._tex/isima.png}
-		
-		\vspace{0.5cm}
-		
-		\begin{minipage}{4cm}
-			\begin{flushleft}
-				Institut Supérieur d’Informatique, de Modélisation et de leurs Applications
-				
-				\vspace{0.5cm}
-				
-				{\footnotesize 1 rue de la Chebarde \\ TSA 60125 \\ CS 60026 \\ 63178 Aubière CEDEX }
-			\end{flushleft}
-		\end{minipage}
-	\end{minipage}
-}
 
-\ifdefined\rpLogoEntreprise{
-	\begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} r}
-		{ \rp@isima } & \begin{minipage}[t]{6cm}
-			\begin{flushright}
-				\vspace{0pt}\includegraphics[width=\rpLargeurLogoEntreprise]{\rpLogoEntreprise}
-				
-				\vspace{0.5cm}
-				
-				\begin{minipage}{4cm}\begin{flushright}
-					\rpEntreprise
-				\end{flushright}\end{minipage}
-			\end{flushright}
-		\end{minipage}
-	\end{tabular*}
-}\else{
-	\rp@isima
-}\fi
+\def\rpCT#1{\begin{minipage}[t]{4cm}#1\end{minipage}}
+\def\rpCTL#1{\rpCT{\begin{flushleft}#1\end{flushleft}}}
+\def\rpCTR#1{\rpCT{\begin{flushright}#1\end{flushright}}}
+\def\rpCA#1{\bgroup\footnotesize#1\egroup}
+
+\bgroup
+\def\arraystretch{2}
+\begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} r}
+	\includegraphics[width=\rpLargeurLogoIsima]{._tex/isima.png}
+		& \ifdefined\rpLogoEntreprise\includegraphics[width=\rpLargeurLogoEntreprise]{\rpLogoEntreprise}\fi
+		\\
+	\rpCTL{ Institut Supérieur d’Informatique, de Modélisation et de leurs Applications }
+		& \ifdefined\rpEntreprise\rpCTR{\rpEntreprise}\fi
+		\\
+	\rpCTL{\rpCA{ 1 rue de la Chebarde \\ TSA 60125 \\ CS 60026 \\ 63178 Aubière CEDEX }}
+		& \ifdefined\rpAdresseEntreprise\rpCTR{\rpCA\rpAdresseEntreprise}\fi
+\end{tabular*}
+\egroup
 
 \vspace{3cm}
 
