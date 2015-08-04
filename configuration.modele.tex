@@ -1,21 +1,21 @@
 % Documentation des macro à définir pour modifier le rapport.
 % Les fichiers devant être créés lorsque certaines options sont activées sont situés dans le répertoire `contenu`
-% (celui dans lequel se trouve le présent fichier).s
+% (celui dans lequel se trouve le présent fichier).
 % Les macros marquées comme facultatives ne doivent pas (MUST NOT au sens de la RFC 2119) être définies si elles
 % ne sont pas utilisées.
 
 % Les consignes sont ambigües sur la position de la table de figures.
-% Par défaut, elle est placée en troisième page (ii), dans l'ordre des
+% Par défaut, elle est placée en troisième page (ii), dans l’ordre des
 % descriptions. La macro suivante permet de la placer après le sommaire, comme
 % le conseille la fin de cette description.
 % \rpBool\rpFiguresApresToc
 
 % Décommenter la ligne suivante pour afficher la partie Annexes
-% Nécessite la création d'un fichier `annexes.tex`
+% Nécessite la création d’un fichier `annexes.tex`
 % \rpBool\rpAnnexes
 
 % Si cette macro est définie, le lexique/glossaire est affiché
-% Nécessite la création d'un fichier `lexique.tex` constitué d'une succession de `\item[terme]{définition}`
+% Nécessite la création d’un fichier `lexique.tex` constitué d’une succession de `\item[terme]{définition}`
 % \rpBool\rpLexique
 
 % Si le rapport est confidentiel :
@@ -65,14 +65,14 @@
 \def\rpTuteurEntreprise{ -- obligatoire -- }
 
 %%%%%% Entreprise %%%%%
-% Définir la macro suivante affiche l'encart entreprise
-% \def\rpLogoEntreprise{ -- chemin de l'image depuis le présent dossier -- }
+% Définir la macro suivante affiche l’encart entreprise
+% \def\rpLogoEntreprise{ -- chemin de l’image depuis le présent dossier -- }
 
 % Auquel cas la macro suivante est obligatoire
-% \def\rpEntreprise{ -- nom de l'entreprise, adresse -- }
+% \def\rpEntreprise{ -- nom de l’entreprise, adresse -- }
 
 % Et celle-ci fortement souhaitée
-% \def\rpAdresseEntreprise{ -- adresse de l'entrprise -- }
+% \def\rpAdresseEntreprise{ -- adresse de l’entrprise -- }
 
 % Si la largeur du logo est trop importante, décommenter la ligne suivante et diminuer la valeur
 % \def\rpLargeurLogoEntreprise{6cm}
