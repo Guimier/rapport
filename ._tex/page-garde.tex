@@ -9,13 +9,13 @@
 \bgroup
 \def\arraystretch{2}
 \begin{tabular*}{\textwidth}{l @{\extracolsep{\fill}} r}
-	\includegraphics[width=\rpLargeurLogoIsima]{._tex/isima.png}
+	\includegraphics[width=\rpLargeurLogoIsima]{\rpLogoEcole}
 		& \ifdefined\rpLogoEntreprise\includegraphics[width=\rpLargeurLogoEntreprise]{\rpLogoEntreprise}\fi
 		\\
-	\rpCTL{ Institut Supérieur d’Informatique, de Modélisation et de leurs Applications }
+	\rpCTL\rpEcole
 		& \ifdefined\rpEntreprise\rpCTR{\rpEntreprise}\fi
 		\\
-	\rpCTL{\rpCA{ 1 rue de la Chebarde \\ TSA 60125 \\ CS 60026 \\ 63178 Aubière CEDEX }}
+	\rpCTL{\rpCA\rpAdresseEcole}
 		& \ifdefined\rpAdresseEntreprise\rpCTR{\rpCA\rpAdresseEntreprise}\fi
 \end{tabular*}
 \egroup
