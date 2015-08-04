@@ -112,6 +112,17 @@
 
 \setstretch{\rpInterligne}
 
+%%%%%%%%%% Méta-données PDF %%%%%%%%%%
+
+\bgroup
+	\def\nom#1{#1} % L'utilisateur peut avoir utilisé \nom, mais on ne peut pas
+	% formater dans ces données... 
+	\expandafter\pdfinfo{
+	   /Author (\rpNom)
+	   /Title  (\rpTitre)
+	}
+\egroup
+
 %%%%%%%%%% Pied de page %%%%%%%%%%
 
 \usepackage{fancyhdr}
