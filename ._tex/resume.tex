@@ -1,6 +1,6 @@
 \bgroup
 
-\newcommand\keyword[1]{
+\newcommand*\keyword[1]{
 	\ifx\rpKeywordList\empty
 		\def\rpKeywordList{#1}
 	\else
@@ -10,13 +10,13 @@
 }
 
 % \rpResumeAuto{ -- français -- }{ -- anglais -- }
-\def\rpResumeAuto#1#2{\bgroup
+\long\def\rpResumeAuto#1#2{\bgroup
 	\sectionSpeciale{Résumé}
 	\def\rpKeywordList{}
 	#1
 	
 	\ifx\rpKeywordList\empty\else
-		\keywords{Mots-clés :}{\rpKeywordList}
+		\rpKeywords{Mots-clés :}{\rpKeywordList}
 	\fi
 	
 	\vfill
@@ -26,7 +26,7 @@
 	#2
 	
 	\ifx\rpKeywordList\empty\else
-		\keywords{Keywords:}{\rpKeywordList}
+		\rpKeywords{Keywords:}{\rpKeywordList}
 	\fi
 	
 	\vfill
