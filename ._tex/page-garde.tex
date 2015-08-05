@@ -38,12 +38,21 @@
 \end{center}
 
 \vfill
+
+\ifdefined\rpPageDeGardeStricte\bgroup\large
+	\textit{Présenté par :} \textbf{\rpNom}
+	\ifdefined\rpSecondNom et \textbf{\rpSecondNom} \fi
+	\vfill
+\egroup\fi
+
 \vfill
 
 \begin{tabular*}{\textwidth}{l l @{\extracolsep{\fill}} r}
-	\textit{Présenté par :} & \textbf{\rpNom} & \\
-	\ifdefined\rpSecondNom
-		& \textbf{\rpSecondNom} & \\
+	\ifdefined\rpPageDeGardeStricte\else
+		\textit{Présenté par :} & \textbf{\rpNom} & \\
+		\ifdefined\rpSecondNom
+			& \textbf{\rpSecondNom} & \\
+		\fi
 	\fi
 	 & & \\
 	\textit{{\rpTypeTuteurEntreprise} entreprise :} & \textbf{\rpTuteurEntreprise}
