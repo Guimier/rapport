@@ -1,5 +1,9 @@
 Modèle de rapport dans le format ISIMA en LaTeX.
 
+**Licence exacte non encore définie** Utilisation libre, ne pas redistribuer de
+version modifiée (pour le moment), les propositions de modifications sont les
+bienvenues, une référence à ce projet serait appréciée.
+
 Utilisation
 ----
 
