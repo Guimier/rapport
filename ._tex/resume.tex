@@ -1,0 +1,37 @@
+\bgroup
+
+\newcommand\keyword[1]{
+	\ifx\rpKeywordList\empty
+		\def\rpKeywordList{#1}
+	\else
+		\edef\rpKeywordList{\rpKeywordList, #1}
+	\fi
+	\textbf{#1}
+}
+
+% \rpResumeAuto{ -- français -- }{ -- anglais -- }
+\def\rpResumeAuto#1#2{\bgroup
+	\sectionSpeciale{Résumé}
+	\def\rpKeywordList{}
+	#1
+	
+	\ifx\rpKeywordList\empty\else
+		\keywords{Mots-clés :}{\rpKeywordList}
+	\fi
+	
+	\vfill
+	
+	\sectionSpeciale{Abstract}
+	\def\rpKeywordList{}
+	#2
+	
+	\ifx\rpKeywordList\empty\else
+		\keywords{Keywords:}{\rpKeywordList}
+	\fi
+	
+	\vfill
+\egroup}
+
+\input{\rpDossier/resume}
+
+\egroup
