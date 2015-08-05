@@ -62,3 +62,7 @@ L'implémentation actuelle crée un fichier `id.mrp` (`id` étant l'identifiant
 mentionné précédemment), format qui peut facilement être ajouté dans le fichier
 `.gitignore`. Cette implémentation pourrait changer, mais la facilité
 d'exlusion restera.
+
+----
+
+Ce modèle générique est basé sur [mon rapport de projet de 2015](https://github.com/Guimier/projet2-rapport) et a bénéficié des retours de mon binôme (@teyssierdamien).
