@@ -1,12 +1,13 @@
 \bgroup
 
-\newcommand*\keyword[1]{%
+\newcommand*\keyword[2][]{%
+	\edef\rpTmpKw{\ifx&#1&#2\else#1\fi}% http://www.latex-community.org/forum/viewtopic.php?f=5&t=5976
 	\ifx\rpKeywordList\empty%
-		\def\rpKeywordList{#1}%
+		\edef\rpKeywordList{\rpTmpKw}%
 	\else%
-		\edef\rpKeywordList{\rpKeywordList, #1}%
+		\edef\rpKeywordList{\rpKeywordList, \rpTmpKw}%
 	\fi%
-	\textbf{#1}%
+	\textbf{#2}%
 }
 
 % \rpResumeAuto{ -- français -- }{ -- anglais -- }
