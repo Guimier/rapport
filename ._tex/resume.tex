@@ -1,12 +1,12 @@
 \bgroup
 
-\newcommand*\keyword[1]{
-	\ifx\rpKeywordList\empty
-		\def\rpKeywordList{#1}
-	\else
-		\edef\rpKeywordList{\rpKeywordList, #1}
-	\fi
-	\textbf{#1}
+\newcommand*\keyword[1]{%
+	\ifx\rpKeywordList\empty%
+		\def\rpKeywordList{#1}%
+	\else%
+		\edef\rpKeywordList{\rpKeywordList, #1}%
+	\fi%
+	\textbf{#1}%
 }
 
 % \rpResumeAuto{ -- français -- }{ -- anglais -- }
