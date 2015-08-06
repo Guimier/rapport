@@ -8,6 +8,13 @@
 	\documentclass[a4paper, oneside, 12pt]{article}
 \fi
 
+\ifflag{numerique}{\usepackage{hyperref}\hypersetup{
+    colorlinks,
+    linkcolor={red!50!black},
+    citecolor={blue!50!black},
+    urlcolor={blue!80!black}
+}}{\def\phantomsection\empty}
+
 %%%%%%%%%% Paquets %%%%%%%%%%
 
 % Paquets pour le Français
@@ -50,10 +57,10 @@
 %%% Gestion du sommaire
 % Section non numérotée
 % {#1} Nom de la section
-\newcommand\sectionSpeciale[1]{\section*{#1}\addcontentsline{toc}{section}{#1}}
+\newcommand\sectionSpeciale[1]{\phantomsection\addcontentsline{toc}{section}{#1}\section*{#1}}
 % Section non numérotée dont le titre n’est pas affiché.
 % {#1} Nom de la section
-\newcommand\sectionCachee[1]{\addcontentsline{toc}{section}{#1}}
+\newcommand\sectionCachee[1]{\phantomsection\addcontentsline{toc}{section}{#1}}
 
 %%% Gestion des annexes
 \makeatletter
