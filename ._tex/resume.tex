@@ -22,13 +22,16 @@
 	
 	\vfill
 	
-	\sectionSpeciale{Abstract}
-	\def\rpKeywordList{}
-	#2
-	
-	\ifx\rpKeywordList\empty\else
-		\rpKeywords{Keywords:}{\rpKeywordList}
-	\fi
+	% Oublions un instant la typographie française
+	\begin{otherlanguage*}{english}
+		\sectionSpeciale{Abstract}
+		\def\rpKeywordList{}
+		#2
+		
+		\ifx\rpKeywordList\empty\else
+			\rpKeywords{Keywords:}{\rpKeywordList}
+		\fi
+	\end{otherlanguage*}
 	
 	\vfill
 \egroup}
