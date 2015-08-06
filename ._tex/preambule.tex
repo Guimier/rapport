@@ -135,11 +135,16 @@
 
 \bgroup
 	\def\nom#1{#1} % L'utilisateur peut avoir utilisé \nom, mais on ne peut pas
-	% formater dans ces données... 
-	\expandafter\pdfinfo{
-	   /Author (\rpNom)
-	   /Title  (\rpTitre)
-	}
+	% formater dans ces données...
+	\edef\rpTmpAuteurs{\rpNom\ifdefined\rpSecondNom{ et \rpSecondNom}\fi}
+	\ifdefined\hypersetup
+		\expandafter\hypersetup{pdfauthor={\rpTmpAuteurs},pdftitle={\rpTitre}}
+	\else
+		\expandafter\pdfinfo{
+		   /Author (\rpTmpAuteurs)
+		   /Title  (\rpTitre)
+		}
+	\fi
 \egroup
 
 %%%%%%%%%% Pied de page %%%%%%%%%%
