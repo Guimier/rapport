@@ -4,6 +4,8 @@ Modèle de rapport dans le format ISIMA en LaTeX.
 version modifiée (pour le moment), les propositions de modifications sont les
 bienvenues, une référence à ce projet serait appréciée.
 
+**Consultez les [modifications](https://github.com/Guimier/rapport/blob/master/CHANGES.md)** lors des mises à jour.
+
 Utilisation
 ----
 
@@ -45,10 +47,11 @@ Drapeaux
 ----
 Un système de drapeaux est inclus, qui permet de modifier le comportement de la
 compilation sans modifier le fichier de configuration. Il est constitué :
-    - de deux scripts `flag` et `unflag` permettant d'activer ou de
-      désactiver des comportements ;
-    - d'un script `flags` indiquant l'état actuel des drapeaux ;
-    - d'une macro `\ifflag` permettant de tester l'état d'un drapeau.
+
+  - de deux scripts `flag` et `unflag` permettant d'activer ou de
+    désactiver des comportements ;
+  - d'un script `flags` indiquant l'état actuel des drapeaux ;
+  - d'une macro `\ifflag` permettant de tester l'état d'un drapeau.
 
 Le système est conçu pour être étendu : vous pouvez créer un fichier
 `flags.csv` définissant des drapeaux supplémentaires. Celui-ci doit contenir
