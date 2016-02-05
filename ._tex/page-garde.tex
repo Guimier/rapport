@@ -23,9 +23,9 @@
 \vfill
 
 \begin{center}
-	Rapport d’ingénieur \\
+	\rpiRapport \\
 	{\rpType} de \rpAnnee{\ieme} année \\
-	Filière \rpFiliere
+	{\em{\rpFiliere}}
 	
 	\vspace{8pt}
 	
@@ -40,8 +40,8 @@
 \vfill
 
 \ifdefined\rpPageDeGardeStricte\bgroup\large
-	\textit{Présenté par :} \textbf{\rpNom}
-	\ifdefined\rpSecondNom et \textbf{\rpSecondNom} \fi
+	\textit{\rpiPresentePar\rpideuxPoints} \textbf{\rpNom}
+	\ifdefined\rpSecondNom \rpiEt \textbf{\rpSecondNom} \fi
 	\vfill
 \egroup\fi
 
@@ -49,14 +49,14 @@
 
 \begin{tabular*}{\textwidth}{l l @{\extracolsep{\fill}} r}
 	\ifdefined\rpPageDeGardeStricte\else
-		\textit{Présenté par :} & \textbf{\rpNom} & \\
+		\textit{\rpiPresentePar\rpideuxPoints} & \textbf{\rpNom} & \\
 		\ifdefined\rpSecondNom
 			& \textbf{\rpSecondNom} & \\
 		\fi
 	\fi
 	 & & \\
-	\textit{{\rpTypeTuteurEntreprise} entreprise :} & \textbf{\rpTuteurEntreprise}
-	& \textit{Soutenance le} \textbf{\rpDateSoutenance} \\
-	\textit{{\rpTypeTuteurIsima} ISIMA :} & \textbf{\rpTuteurIsima} &
+	\textit{{\rpTypeTuteurEntreprise}\rpideuxPoints} & \textbf{\rpTuteurEntreprise}
+	& \textit{\rpiSoutenanceLe} \textbf{\rpDateSoutenance} \\
+	\textit{{\rpTypeTuteurIsima}\rpideuxPoints} & \textbf{\rpTuteurIsima} &
 	\textit{{\rpType} de} \textbf{\rpDuree}
 \end{tabular*}

@@ -106,18 +106,6 @@
 \newcommand\nom[1]{\textsc{#1}}
 \newcommand\classe[1]{\textit{#1}}
 
-%%%%%%%%%% Outils %%%%%%%%%%
-
-\newcommand\rpFun{{\em{Informatique des Systèmes Embarqués}}}
-\newcommand\rpFdeux{{\em{Génie Logiciel et Systèmes Informatiques}}}
-\newcommand\rpFtrois{{\em{Systèmes d’Information et Aide à la Décision}}}
-\newcommand\rpFquatre{{\em{Calcul et Modélisation Scientifiques}}}
-\newcommand\rpFcinq{{\em{Réseaux et Sécurité informatique}}}
-
-\def\rpLogoEcole{._tex/isima.png}
-\def\rpEcole{ Institut Supérieur d’Informatique, de Modélisation et de leurs Applications }
-\def\rpAdresseEcole{ 1 rue de la Chebarde \\ 63178 Aubière CEDEX }
-
 %%%%%%%%%% Configuration %%%%%%%%%%
 
 \makeatletter
@@ -127,6 +115,7 @@
 \makeatother
 
 \input{._tex/configuration.defauts.tex}
+\def\rpAnglais{\input{._tex/configuration.defauts.en.tex}}
 \input{configuration}
 
 \setstretch{\rpInterligne}
