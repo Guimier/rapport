@@ -1,6 +1,7 @@
 #!/bin/bash
 # Algorithme de compilation du document.
 
+cd "$(dirname "$0")"
 source ._bash_common
 
 declare -ar bibs=( rapport web )
