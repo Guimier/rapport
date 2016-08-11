@@ -1,9 +1,7 @@
 % Note : logo disponibles sur http://fc.isima.fr/~brunot/files/isima/logos/
 % J’avais trouvé une version vectorielle, ce serait mieux, mais je ne la trouve plus…
 
-\def\rpCT#1{\begin{minipage}[t]{4cm}#1\end{minipage}}
-\def\rpCTL#1{\rpCT{\begin{flushleft}#1\end{flushleft}}}
-\def\rpCTR#1{\rpCT{\begin{flushright}#1\end{flushright}}}
+\def\rpCT#1#2{\begin{minipage}[t]{4cm}\begin{flush#1}#2\end{flush#1}\end{minipage}}
 \def\rpCA#1{\bgroup\footnotesize#1\egroup}
 
 \bgroup
@@ -12,11 +10,18 @@
 	\includegraphics[width=\rpLargeurLogoIsima]{\rpLogoEcole}
 		& \ifdefined\rpLogoEntreprise\includegraphics[width=\rpLargeurLogoEntreprise]{\rpLogoEntreprise}\fi
 		\\
-	\rpCTL\rpEcole
-		& \ifdefined\rpEntreprise\rpCTR{\rpEntreprise}\fi
-		\\
-	\rpCTL{\rpCA\rpAdresseEcole}
-		& \ifdefined\rpAdresseEntreprise\rpCTR{\rpCA\rpAdresseEntreprise}\fi
+	\rpCT{left}{
+		\rpEcole
+		\vskip 5pt
+		\rpCA\rpAdresseEcole
+	}
+		& \rpCT{right}{
+			\ifdefined\rpEntreprise\rpEntreprise\fi
+			\ifdefined\rpAdresseEntreprise{
+				\vskip 5pt
+				\rpCA\rpAdresseEntreprise
+			}\fi
+		}
 \end{tabular*}
 \egroup
 
